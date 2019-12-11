@@ -16,6 +16,8 @@ export default {
     initScanner() {
       const LICENSE_KEY = process.env.VUE_APP_SCANDIT_SECRET
       const engineLocation = "https://cdn.jsdelivr.net/npm/scandit-sdk@4.2.2"
+      // const engineLocation = "/dist"
+      // const engineLocation = "node_modules/"
       ScanditSDK.configure(LICENSE_KEY, {
         engineLocation: engineLocation,
         preloadEngineLibrary: true,
