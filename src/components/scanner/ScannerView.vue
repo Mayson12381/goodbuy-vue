@@ -61,7 +61,8 @@ export default {
     }
   },
   mounted() {
-    this.isInfoModalActive = this.$route.params.usersFirstVisit
+    const isFirstVisit = this.$route.params.usersFirstVisit
+    this.isInfoModalActive = isFirstVisit
   },
   methods: {
     onBarcodeDetected(barcode) {
