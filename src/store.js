@@ -16,7 +16,6 @@ export default new Vuex.Store({
       state.barcode = ''
     },
     updateMultipleBarcodes (state, multipleBarcodes){
-      console.log(state.multipleBarcodes)
       state.multipleBarcodes.add(multipleBarcodes)
     },
     resetMultipleBarcodes (state) {
