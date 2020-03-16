@@ -15,12 +15,6 @@ export default {
   components: {
     GLogoWhite,
   },
-  props: {
-    desktop: {
-      type: Boolean,
-      default: false,
-    }
-  },
 }
 </script>
 
