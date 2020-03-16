@@ -102,7 +102,6 @@ export default {
         //has to be changed to table view when table view exists
         this.$router.push('feature')
         }
-        console.log("getKarma")
       }
       else {
         alert("Please scan a product")
