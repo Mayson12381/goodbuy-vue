@@ -52,7 +52,6 @@ export default {
         this.$store.commit('updateMultipleBarcodes', barcode)
       }
       else{
-        console.log(barcode)
         this.$emit('onBarcodeDetected', barcode)
       }
     },
