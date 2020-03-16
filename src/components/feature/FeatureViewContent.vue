@@ -1,6 +1,5 @@
 <template>
     <div class="feature-content">
-        <slot name="karma-fridge">
             <button 
             @click="onClickFridgeKarma"
             class="karma-fridge-button" 
@@ -8,15 +7,12 @@
             <KarmaFridgeIcon class="icon"/>
             <p>Karma Fridge let's you scan the item in your fridge and provides you with an ethical-feedback.</p>
             </button>
-        </slot>
-        <slot name="instant-feedback">
             <button
             @click="onClickInstantFeedback"
             >
             <InstantIcon class="icon"/>
              <p>Instant Feedback let's you scan single items and give you feedback and additional information about that product.</p>
             </button>
-        </slot>
     </div>
 </template>
 
