@@ -3,7 +3,7 @@
     <div class="logo">
       <GLogoWhite />
     </div>
-    <div class="title" :class="{ 'title__desktop': desktop }" ref="name">goodbuy</div>
+    <div class="title" ref="name">goodbuy</div>
   </div>
 </template>
 
