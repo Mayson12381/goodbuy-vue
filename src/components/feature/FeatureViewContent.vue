@@ -30,7 +30,7 @@ export default {
         KarmaFridgeIcon,
     },
     methods: {
-        instantFeedback() {
+        onClickInstantFeedback() {
             this.$router.push({
                 name: 'instant-feedback',
                 params: { usersFirstVisit: true },
