@@ -49,7 +49,6 @@ export default {
     },
     onBarcodeDetect(barcode) {
       if (this.$route.path == '/fridge-karma'){
-        console.log(barcode)
         this.$store.commit('updateMultipleBarcodes', barcode)
       }
       else{
