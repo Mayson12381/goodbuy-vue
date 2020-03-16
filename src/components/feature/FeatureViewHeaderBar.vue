@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <div class="feature-view-header-bar">
     <div class="logo">
       <GLogoWhite />
