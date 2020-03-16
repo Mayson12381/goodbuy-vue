@@ -61,9 +61,9 @@ export default {
 
         color: #272727;
 
-        padding: 5%;
+        padding: 1rem;
     }
     .feature-content {
-        margin-top: 10%;
+        margin-top: 2rem;
     }
 </style>
