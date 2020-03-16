@@ -43,9 +43,6 @@ export default {
     color: white;
     font-size: 12vw;
 
-    &__desktop {
-      font-size: 3vw;
-    }
   }
 }
 </style>
