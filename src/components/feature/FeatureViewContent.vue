@@ -11,7 +11,7 @@
         </slot>
         <slot name="instant-feedback">
             <button
-            @click="instantFeedback"
+            @click="onClickInstantFeedback"
             >
             <InstantIcon class="icon"/>
              <p>Instant Feedback let's you scan single items and give you feedback and additional information about that product.</p>
