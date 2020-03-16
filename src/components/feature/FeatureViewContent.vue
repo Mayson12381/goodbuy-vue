@@ -2,7 +2,7 @@
     <div class="feature-content">
         <slot name="karma-fridge">
             <button 
-            @click="karmaFridge"
+            @click="onClickFridgeKarma"
             class="karma-fridge-button" 
             >
             <KarmaFridgeIcon class="icon"/>
