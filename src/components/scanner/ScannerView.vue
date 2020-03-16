@@ -113,29 +113,29 @@ export default {
 
 <style lang="scss">
 .karma-button {
-/* Popup Button */
+  /* Popup Button */
 
 
-position: absolute;
-left: 34.13%;
-right: 34.13%;
-top: 82.61%;
-bottom: 10.49%;
-background: #90D2D9;
-border-radius: 30%;
-/* goodbuy/Headlines Sub */
+  position: absolute;
+  left: 34.13%;
+  right: 34.13%;
+  top: 82.61%;
+  bottom: 10.49%;
+  background: #90D2D9;
+  border-radius: 30%;
+  /* goodbuy/Headlines Sub */
 
-font-family: Work Sans;
-font-style: normal;
-font-weight: 500;
-font-size: 20px;
-line-height: 23px;
+  font-family: Work Sans;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
 
-/* goodbuy/Black */
+  /* goodbuy/Black */
 
-color: #272727;
-/* goodbuy/Button shadow */
-box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.353);
+  color: #272727;
+  /* goodbuy/Button shadow */
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.353);
 }
 
 .scanner-view {
