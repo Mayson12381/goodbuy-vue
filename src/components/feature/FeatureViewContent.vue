@@ -36,7 +36,7 @@ export default {
                 params: { usersFirstVisit: true },
             })
         },
-        karmaFridge() {
+        onClickFridgeKarma() {
             this.$router.push({
                 name:'fridge-karma',
                 params: { usersFirstVisit: true },
