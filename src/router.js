@@ -16,7 +16,7 @@ export const routes=[
     { path: '/instant-feedback', name:'instant-feedback', component: ScannerView },
     { path: '/instant-feedback/:code', name:'product', component: ProductView },
     { path: '/instagram', name: 'instagram', component: InstagramView},
-    { path: '/fridge-karma/result',name: 'result', component: TableView}
+    { path: '/fridge-karma/result',name: 'result', component: TableView},
     { path: '/feature', name: 'feature', component: FeatureView},
     { path: '/fridge-karma', name:'fridge-karma', component: ScannerView},
 ]

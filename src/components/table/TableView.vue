@@ -2,16 +2,13 @@
     <div>
         <HeaderBar></HeaderBar>
         <div class="container">
-        <ul>
-        <template v-for="(data, index) in response_data">
-                <!---  Has to be set to barcode --> 
-    <!-- :to="{ path: '/tableproductview/' + data.fields.code }" -->
-
+            <template v-for="(data, index) in response_data" style="overflow: auto;">
                 <button
-                @click="isProductInfoActive = true, 
-                product = data.fields"
-                :key="index"
-                class="router-style">
+                    @click="isProductInfoActive = true, 
+                    product = data.fields"
+                    :key="index"
+                    class="router-style"
+                >
                     {{ data.fields.name }}
                     <div class="is-big-ten">
                         <div v-if="data.is_big_ten == true">
@@ -25,23 +22,22 @@
                         </div>
                     </div>
                 </button>
-            <hr :key="index+data.fields.name">
-        </template>
+                <hr :key="index+data.fields.name">
+            </template>
 
-        <transition name="slide-up">
-            <InfoSlideUp
-                v-if="isProductInfoActive"
-                :showScanAgainButton="false"
-                :productName="product.name"
-                :productBrand="product.brand"
-                :productCorporation="product.corporation"
-                :barcode="this.barcode"
-                @closeInfoModal="isProductInfoActive = false"
-            />
-        </transition>
-        </ul>
+            <transition name="slide-up">
+                <InfoSlideUp
+                    v-if="isProductInfoActive"
+                    :showScanAgainButton="false"
+                    :productName="product.name"
+                    :productBrand="product.brand"
+                    :productCorporation="product.corporation"
+                    :barcode="this.barcode"
+                    @closeInfoModal="isProductInfoActive = false"
+                />
+            </transition>
         </div>
-        <h3 class="footer">Score: {{ score }}</h3>
+        <div class="footer-score">Score: {{ score }}</div>
     </div>
 </template>
 <script>
@@ -124,7 +120,7 @@ export default {
     .is-big-ten {
        margin-left: 80%;
     }
-    .footer {
+    .footer-score {
         position: fixed;
         left: 0;
         bottom: 0;
@@ -132,5 +128,8 @@ export default {
         background-color: red;
         color: white;
         text-align: center;
+    }
+    .container {
+        overflow: auto;
     }
 </style>
