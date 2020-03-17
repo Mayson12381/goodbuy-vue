@@ -34,14 +34,13 @@
     >
       <slot slot="description">Scanner is loading...</slot>
     </GLoadingAnimation>
-    <template v-if="!isSingleScan && !isInfoModalActive && isScannerStarted">
-          <button 
-            @click="getKarma"
-            class="karma-button">
-            Get Karma
-            </button>
-
-    </template>
+    <button 
+      v-if="!isSingleScan && !isInfoModalActive && isScannerStarted"
+      @click="getKarma"
+      class="karma-button"
+    >
+      Get Karma
+    </button>
 
   </div>
 </template>
