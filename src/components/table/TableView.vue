@@ -2,7 +2,7 @@
     <div>
         <HeaderBar></HeaderBar>
         <div class="container">
-            <template v-for="(data, index) in response_data" style="overflow: auto;">
+            <template v-for="(data, index) in response_data" style="overflow-y: auto;">
                 <button
                     @click="isProductInfoActive = true, 
                     product = data.fields"
@@ -37,7 +37,15 @@
                 />
             </transition>
         </div>
-        <div class="footer-score">Score: {{ score }}</div>
+            <div class="footer-score">
+                <p class="p-score">Score: {{ score }}</p>
+                <button 
+                class="done-button"
+                @click="reRouteToFeature"
+                >
+                Done
+                </button>
+            </div>
     </div>
 </template>
 <script>
@@ -70,6 +78,9 @@ export default {
         }
     },
     methods: {
+        reRouteToFeature() {
+            this.$router.push("/feature")
+        },
         getAPIResponse() {
             FeedbackService.getFridgeKarmaResult()
             .then(response => (
@@ -121,15 +132,36 @@ export default {
        margin-left: 80%;
     }
     .footer-score {
+        padding: .3rem;
+        overflow: hidden;
+        background-color: #272727;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
         position: fixed;
-        left: 0;
         bottom: 0;
-        width: 100%;
-        background-color: red;
-        color: white;
+        width: 100%
+
+    }
+    .p-score {
+        margin: auto;
         text-align: center;
+        font-family: 'Avenir';
+        color: white;
+        font-size: 12vw;
     }
-    .container {
-        overflow: auto;
+    .done-button {
+        margin: auto;
+        text-align: center;
+        font-family: 'Avenir';
+        color: white;
+        font-size: 12vw;
     }
+
+    #app {
+ 
+        overflow: scroll;
+
+    }
+
 </style>
