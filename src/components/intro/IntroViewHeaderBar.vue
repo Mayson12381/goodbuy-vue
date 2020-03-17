@@ -32,6 +32,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  position: fixed;
+  width: 100%;
 
   .logo {
     position: absolute;
