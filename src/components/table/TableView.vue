@@ -3,39 +3,41 @@
     <HeaderBar></HeaderBar>
     <div class="table-view__body">
       <template v-for="(data, index) in response_data">
-				<button
-					@click="isProductInfoActive = true,
-					product = data.fields"
-					:key="index"
-					class="row"
-					>
-					{{ data.fields.name }}
-					<div class="is-big-ten">
-						<div v-if="data.is_big_ten === true">
-							❌
-						</div>
-						<div v-if="data.is_big_ten === false">
-							✅
-						</div>
-						<div v-if="data.is_big_ten === 'We don\'t know'">
-							❓
-						</div>
-					</div>
-				</button>
-				<hr :key="index+data.fields.name">
+          <button
+              @click="isProductInfoActive = true,
+              product = data.fields,
+              product.is_big_ten = data.is_big_ten"
+              :key="index"
+              class="row"
+              >
+              {{ data.fields.name }}
+              <div class="is-big-ten">
+                  <div v-if="data.is_big_ten == true">
+                      ❌
+                  </div>
+                  <div v-if="data.is_big_ten == false">
+                      ✅
+                  </div>
+                  <div v-if="data.is_big_ten == 'We don\'t know'">
+                      ❓
+                  </div>
+              </div>
+          </button>
+          <hr :key="index+data.fields.name">
       </template>
     </div>
 
     <transition name="slide-up">
-			<InfoSlideUp
-				v-if="isProductInfoActive"
-				:showScanAgainButton="false"
-				:productName="product.name"
-				:productBrand="product.brand"
-				:productCorporation="product.corporation"
-				:barcode="this.barcode"
-				@closeInfoModal="isProductInfoActive = false"
-			/>
+        <InfoSlideUp
+            v-if="isProductInfoActive"
+            :showScanAgainButton="false"
+            :productName="product.name"
+            :productBrand="product.brand"
+            :productCorporation="product.corporation"
+            :productIsBigTen="product.is_big_ten"
+            :barcode="this.barcode"
+            @closeInfoModal="isProductInfoActive = false"
+        />
     </transition>
 
     <div class="table-view__footer">
@@ -56,56 +58,57 @@ import InfoSlideUp from '@/components/product/info/InfoSlideUp.vue'
 import HeaderBar from '@/components/feature/FeatureViewHeaderBar.vue'
 
 export default {
-	components: {
-		InfoSlideUp,
-		HeaderBar
-	},
-	data() {
-		return {
-			response_data: '',
-			score: 0,
-			big_true: 0,
-			big_false: 0,
-			big_we_dont_know: 0,
-			big_size: 0,
-			isProductInfoActive: false,
-			product: {
-				brand: '',
-				corporation: '',
-				name: '',
-				code: '',
-			},
-			barcode: '',
-		}
-	},
-	methods: {
+    components: {
+        InfoSlideUp,
+        HeaderBar
+    },
+    data() {
+        return {
+            response_data: '',
+            score: 0,
+            big_true: 0,
+            big_false: 0,
+            big_we_dont_know: 0,
+            big_size: 0,
+            isProductInfoActive: false,
+            product: {
+                brand: '',
+                corporation: '',
+                name: '',
+                code: '',
+                is_big_ten: ''
+            },
+            barcode: '',
+        }
+    },
+    methods: {
+		onClickRouteToFeature() {
+			this.$router.push("/feature")
 		calculateScore() {
-			this.response_data.forEach(element => {
 				this.big_size += 1
+			this.response_data.forEach(element => {
 				if (element.is_big_ten === true) {
 					this.big_true += 1
 				}
-				else if (element.is_big_ten === false) {
 					this.big_false += 1
+				else if (element.is_big_ten === false) {
 				}
 				else {
-					this.big_we_dont_know += 1
-				}
-			})
 			// <!-- Good Item / Total Item * 100 = Score -->
+			})
+				}
+					this.big_we_dont_know += 1
 			this.score = Math.round((this.big_false / (this.big_size - this.big_we_dont_know)) * 100)
-		},
 		getAPIResponse() {
+		},
 			FeedbackService.getFridgeKarmaResult()
-			.then(response => (
 				this.saveData(response)
+			.then(response => (
 			))
 		},
-		onClickRouteToFeature() {
-			this.$router.push("/feature")
 		},
-		saveData(response) {
 			console.log(response.data)
+		saveData(response) {
 			this.response_data = response.data
 			this.calculateScore()
 		},
