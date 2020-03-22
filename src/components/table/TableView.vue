@@ -7,7 +7,8 @@
       <template v-for="(data, index) in response_data">
           <button
               @click="isProductInfoActive = true,
-              product = data.fields"
+              product = data.fields,
+              product.is_big_ten = data.is_big_ten"
               :key="index"
               class="row"
               >
@@ -35,6 +36,7 @@
             :productName="product.name"
             :productBrand="product.brand"
             :productCorporation="product.corporation"
+            :productIsBigTen="product.is_big_ten"
             :barcode="this.barcode"
             @closeInfoModal="isProductInfoActive = false"
         />
@@ -76,6 +78,7 @@ export default {
                 corporation: '',
                 name: '',
                 code: '',
+                is_big_ten: ''
             },
             barcode: '',
         }
