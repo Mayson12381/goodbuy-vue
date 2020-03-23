@@ -1,9 +1,9 @@
 <template>
-  <div class="container">
-    <div class="header">
+  <div class="table-view">
+    <div class="table-view__header">
       <HeaderBar></HeaderBar>
     </div>
-    <div class="main">
+    <div class="table-view__body">
       <template v-for="(data, index) in response_data">
           <button
               @click="isProductInfoActive = true,
@@ -133,14 +133,14 @@ export default {
   font-family: 'Avenir';
 }
 
-.container {
+.table-view {
   display: flex;
   flex-direction: column;
   width:  100%;
   height: 100%;
 }
 
-.main {
+.table-view__body {
   table-layout:fixed;
   flex: 5;
   overflow-y: auto;
