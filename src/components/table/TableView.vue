@@ -131,7 +131,7 @@ export default {
   width:  100%;
   height: 100%;
 
-	.table-view__body {
+	&__body {
 		table-layout:fixed;
 		flex: 5;
 		overflow-y: auto;
