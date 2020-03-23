@@ -144,7 +144,7 @@ export default {
 		}
 	}
 
-	.table-view__footer {
+	&__footer {
 		background-color: #272727;
 		display: flex;
 		justify-content: space-around;
