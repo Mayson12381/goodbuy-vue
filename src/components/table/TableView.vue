@@ -11,13 +11,13 @@
 					>
 					{{ data.fields.name }}
 					<div class="is-big-ten">
-						<div v-if="data.is_big_ten == true">
+						<div v-if="data.is_big_ten === true">
 							❌
 						</div>
-						<div v-if="data.is_big_ten == false">
+						<div v-if="data.is_big_ten === false">
 							✅
 						</div>
-						<div v-if="data.is_big_ten == 'We don\'t know'">
+						<div v-if="data.is_big_ten === 'We don\'t know'">
 							❓
 						</div>
 					</div>
@@ -82,10 +82,10 @@ export default {
 		calculateScore() {
 			this.response_data.forEach(element => {
 				this.big_size += 1
-				if (element.is_big_ten == true) {
+				if (element.is_big_ten === true) {
 					this.big_true += 1
 				}
-				else if (element.is_big_ten == false) {
+				else if (element.is_big_ten === false) {
 					this.big_false += 1
 				}
 				else {
@@ -119,8 +119,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-* {
-  margin: 0;
+
+hr, p {
+	margin: 0;
 }
 
 .table-view {
@@ -143,8 +144,8 @@ export default {
 	}
 
 	&__footer {
-		background-color: #272727;
 		display: flex;
+		background-color: #272727;
 		justify-content: space-around;
 		align-items: center;
 		flex: 1;
