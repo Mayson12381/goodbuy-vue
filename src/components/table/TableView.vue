@@ -1,8 +1,6 @@
 <template>
   <div class="table-view">
-    <div class="table-view__header">
-      <HeaderBar></HeaderBar>
-    </div>
+    <HeaderBar></HeaderBar>
     <div class="table-view__body">
       <template v-for="(data, index) in response_data">
 				<button
