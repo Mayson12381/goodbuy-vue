@@ -85,10 +85,10 @@ export default {
 			calculateScore() {
 				this.response_data.forEach(element => {
 					this.big_size += 1
-					if (element.is_big_ten == true) {
+					if (element.is_big_ten === true) {
 							this.big_true += 1
 					}
-					else if (element.is_big_ten == false) {
+					else if (element.is_big_ten === false) {
 							this.big_false += 1
 					}
 					else {
