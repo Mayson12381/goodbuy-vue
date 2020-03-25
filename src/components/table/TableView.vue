@@ -12,13 +12,13 @@
 					>
 					{{ data.fields.name }}
 					<div class="is-big-ten">
-						<div v-if="data.is_big_ten == true">
+						<div v-if="data.is_big_ten === true">
 							❌
 						</div>
-						<div v-if="data.is_big_ten == false">
+						<div v-if="data.is_big_ten === false">
 							✅
 						</div>
-						<div v-if="data.is_big_ten == 'We don\'t know'">
+						<div v-if="data.is_big_ten === 'We don\'t know'">
 							❓
 						</div>
 					</div>
