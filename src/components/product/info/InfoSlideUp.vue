@@ -11,9 +11,9 @@
 
       <div class="icon">
         <template v-if="productIsBigTen">
-          <GeneralMills v-if="productCorporation=='General Mills, Inc.'"></GeneralMills>
-          <ABF v-else-if="productCorporation=='Associated British Foods plc'"></ABF>
-          <Kellogs v-else-if="productCorporation=='Kellog\'s'"></Kellogs>
+          <GeneralMills v-if="productCorporation === 'General Mills, Inc.'"></GeneralMills>
+          <ABF v-else-if="productCorporation === 'Associated British Foods plc'"></ABF>
+          <Kellogs v-else-if="productCorporation === 'Kellog\'s'"></Kellogs>
           <component v-else :is="productCorporation"></component>
         </template>
         <FoodIcon v-else />
