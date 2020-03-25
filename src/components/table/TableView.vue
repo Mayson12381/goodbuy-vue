@@ -114,7 +114,6 @@ export default {
   },
 	created() {
 		this.barcodes = this.$store.state.multipleBarcodes
-		console.log(this.barcodes)
 		this.getAPIResponse()
 	}
 }
@@ -160,7 +159,7 @@ hr, p {
 			background-color: #272727;
 			border-radius: 16px;
 			margin-right: 20px;
-			padding: 1vw;
+			padding: 0.5rem;
 		}
 	}
 }
