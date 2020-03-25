@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import AuthService from '@/src/auth/AuthService.js'
+import AuthService from '@/auth/AuthService.js'
 import axios from 'axios'
 
 const API_URL = 'http://0.0.0.0:8000/'
