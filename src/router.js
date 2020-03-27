@@ -8,20 +8,22 @@ import InstagramView from '@/components/instagram/InstagramView.vue'
 import PageNotFound from '@/fallbacks/PageNotFound.vue'
 import FeatureView from '@/components/feature/FeatureView.vue'
 import TableView from '@/components/table/TableView.vue'
-import AuthenticationView from '@/components/authentication/AuthenticationView.vue'
+import Login from '@/components/login/Login.vue'
+import Profile from '@/components/profile/Profile.vue'
 
 Vue.use(Router)
 
 export const routes=[
     { path: "*", component: PageNotFound },
-    { path: '/' , component: IntroView },
+    { path: '/' , component: IntroView }, 
     { path: '/instant-feedback', name:'instant-feedback', component: ScannerView },
     { path: '/instant-feedback/:code', name:'product', component: ProductView },
     { path: '/instagram', name: 'instagram', component: InstagramView},
     { path: '/fridge-karma/result',name: 'result', component: TableView},
     { path: '/feature', name: 'feature', component: FeatureView},
     { path: '/fridge-karma', name: 'fridge-karma', component: ScannerView},
-    { path: '/auth', name: 'auth', component: AuthenticationView},
+    { path: '/login', name: 'login', component: Login},
+    { path: '/profile', name: 'profile', component: Profile},
 ]
 
 const router = new Router({
