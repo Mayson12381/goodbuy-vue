@@ -31,6 +31,7 @@ export default class AuthService {
     this.auth0.parseHash(( err, authResult ) => {
       if ( authResult && authResult.accessToken && authResult.idToken ) {
         this.setSession( authResult )
+          this.$store.state.loggedIn = true
       } else if ( err ) {
         console.log( err )
         alert( `Error: ${ err.error }. Check the console for further details.` )
@@ -38,6 +39,7 @@ export default class AuthService {
         this.silentAuth()
           .then(() => {
             console.log( 'user logged in through silent auth' )
+            this.$store.state.loggedIn = true
           })
           .catch(( err ) => {
             console.log( err )
@@ -60,6 +62,7 @@ export default class AuthService {
     delete this.idToken
     delete this.expiresAt
     this.authNotifier.emit( 'authChange', false )
+    this.$store.state.loggedIn = false
     router.replace( '/login/' )
   }
 

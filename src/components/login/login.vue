@@ -1,5 +1,6 @@
 <template>
   <div>
+    <HeaderBar />
     <button
       v-if="!authenticated"
       @click="login()">
@@ -25,12 +26,16 @@
 <script>
 import AuthService from '@/auth/AuthService'
 import axios from 'axios'
+import HeaderBar from '@/components/ui/GHeaderBar.vue'
 
 const API_URL = 'http://localhost:8080'
 const auth = new AuthService()
 
 export default {
   name: 'login',
+  components: {
+    HeaderBar,
+  },
   data () {
     return {
       authenticated: false,

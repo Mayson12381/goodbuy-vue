@@ -44,7 +44,7 @@
 <script>
 import FeedbackService from '@/FeedbackService'
 import InfoSlideUp from '@/components/product/info/InfoSlideUp.vue'
-import HeaderBar from '@/components/feature/FeatureViewHeaderBar.vue'
+import HeaderBar from '@/components/ui/GHeaderBar.vue'
 
 export default {
   components: {

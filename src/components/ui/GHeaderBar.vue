@@ -1,19 +1,28 @@
 <template lang="html">
-  <div class="intro-view-header-bar">
+  <div class="header-bar">
     <div class="logo">
       <GLogoWhite />
     </div>
     <div class="title" :class="{ 'title__desktop': desktop }" ref="name">goodbuy</div>
+    <div class="signup" v-if="loggedIn == false">SignIn</div>
+    <ProfileLogo v-else-if="loggedIn == true"/>
   </div>
 </template>
 
 <script>
 import GLogoWhite from '@/assets/logo/GLogoWhite'
+import ProfileLogo from '@/assets/profile/user.svg'
 
 export default {
-  name: 'IntroViewHeaderBar',
+  name: 'HeaderBar',
   components: {
     GLogoWhite,
+    ProfileLogo,
+  },
+  data() {
+    return {
+      loggedIn: ''
+    }
   },
   props: {
     desktop: {
@@ -21,11 +30,15 @@ export default {
       default: false,
     }
   },
+  created() {
+    this.loggedIn = this.$store.state.loggedIn
+    console.log(this.loggedIn)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.intro-view-header-bar {
+.header-bar {
   padding: .3rem;
   overflow: hidden;
   background-color: #272727;
@@ -40,6 +53,9 @@ export default {
       width: 40px;
       height: 40px;
     }
+  }
+  .signup {
+    color: white;
   }
 
   .title {
