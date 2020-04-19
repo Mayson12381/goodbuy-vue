@@ -28,7 +28,7 @@
 </template>
 <script>
 
-import HeaderBar from '@/components/intro/IntroViewHeaderBar'
+import HeaderBar from '@/components/ui/GHeaderBar.vue'
 import BackArrowIcon from '@/assets/common/BackArrowIcon.vue'
 import FeedbackService from '@/FeedbackService.js'
 

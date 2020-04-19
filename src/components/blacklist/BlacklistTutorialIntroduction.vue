@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import HeaderBar from '@/components/intro/IntroViewHeaderBar.vue'
+import HeaderBar from '@/components/ui/GHeaderBar.vue'
 export default {
   components: {
     HeaderBar
