@@ -52,14 +52,6 @@ export default {
       })
     }
   },
-  created() {
-    this.$emit('isRegistered', !this.$auth.isAuthenticated);
-  },
-  updated() {
-    if (this.$auth.isAuthenticated) {
-      this.$router.push('feature');
-    }
-  }
 }
 </script>
 

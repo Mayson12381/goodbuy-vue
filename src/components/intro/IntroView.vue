@@ -2,7 +2,7 @@
   <div class="welcome-screen">
     <div
       :class="{
-        'blur-page': isInfoModalActive
+        'blur-page': isInfoModalActive && !$auth.isAuthenticated
       }"
     >
     <HeaderBar data-cy="header-bar"/>
@@ -12,7 +12,6 @@
     </div>
     <transition v-if="!$auth.isAuthenticated" name="info-modal">
       <IntroViewModal
-        @isRegistered="setFalse"
         v-if="isInfoModalActive"
         @closeModal="isInfoModalActive = false"
       />
@@ -35,12 +34,6 @@ export default {
     IntroViewContent,
     HeaderBar,
     IntroViewModal
-  },
-  methods: {
-    setFalse(event) {
-      console.log(event);
-      this.isInfoModalActive =  event
-    }
   },
   data() {
     return {
