@@ -10,8 +10,9 @@
     <IntroViewContact data-cy="intro-contact" />
     <IntroViewButton data-cy="intro-button-scan"/>
     </div>
-    <transition name="info-modal">
+    <transition v-if="!$auth.isAuthenticated" name="info-modal">
       <IntroViewModal
+        @isRegistered="setFalse"
         v-if="isInfoModalActive"
         @closeModal="isInfoModalActive = false"
       />
@@ -35,11 +36,17 @@ export default {
     HeaderBar,
     IntroViewModal
   },
+  methods: {
+    setFalse(event) {
+      console.log(event);
+      this.isInfoModalActive =  event
+    }
+  },
   data() {
     return {
       isInfoModalActive: true,
     }
-  },
+  }
 }
 </script>
 

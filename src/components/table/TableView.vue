@@ -5,16 +5,21 @@
     <template v-for="(data, index) in response_data">
       <button @click="isProductInfoActive = true,
       product = data.fields,
-      product.is_big_ten = data.is_big_ten" :key="index" class="row">
+      product.is_big_ten = data.is_big_ten,
+      product.is_blacklist = data.is_blacklist" :key="index" class="row"
+      >
         {{ data.fields.name }}
         <div class="is-big-ten">
-          <div v-if="data.is_big_ten === true">
+          <div v-if="data.is_blacklist === true">
+            ⬛️
+          </div>
+          <div v-else-if="data.is_big_ten === true">
             ❌
           </div>
-          <div v-if="data.is_big_ten === false">
+          <div v-else-if="data.is_big_ten === false">
             ✅
           </div>
-          <div v-if="data.is_big_ten === 'We don\'t know'">
+          <div v-else-if="data.is_big_ten === 'We don\'t know'">
             ❓
           </div>
         </div>
@@ -37,7 +42,6 @@
 			Done
 			</button>
     </div>
-  </div>
 </div>
 </template>
 
@@ -65,7 +69,8 @@ export default {
         corporation: '',
         name: '',
         code: '',
-        is_big_ten: ''
+        is_big_ten: '',
+        is_blacklist: '',
       },
       barcode: '',
     }
@@ -74,9 +79,9 @@ export default {
     calculateScore() {
       this.response_data.forEach(element => {
         this.big_size += 1
-        if (element.is_big_ten === true) {
+        if (element.is_big_ten === true || element.is_blacklist === true) {
           this.big_true += 1
-        } else if (element.is_big_ten === false) {
+        } else if (element.is_big_ten === false || element.is_blacklist === false && element.is_big_ten !== 'We don\'t know') {
           this.big_false += 1
         } else {
           this.big_we_dont_know += 1

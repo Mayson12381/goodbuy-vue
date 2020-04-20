@@ -1,33 +1,28 @@
 <template>
-  <div class="home">
-    <!-- Check that the SDK client is not currently loading before accessing is methods -->
-    <div v-if="!$auth.loading">
-      <!-- show login when not authenticated -->
-
-      <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
-
+  <div>
+    <HeaderBar />
+      <button v-if="!$auth.isAuthenticated" @click="onClickLogin">Log in</button>
       <!-- show logout when authenticated -->
-      <button v-if="$auth.isAuthenticated" @click="logout">Log out</button>
-    </div>
+      <button v-if="$auth.isAuthenticated" @click="onClickLogout">Log out</button>
   </div>
 </template>
 
 <script>
-// import AuthService from '@/auth/AuthService'
-import axios from 'axios'
+import HeaderBar from '@/components/ui/GHeaderBar.vue'
 
-const API_URL = 'http://localhost:8080'
-// const auth = new AuthService()
 
 export default {
   name: 'login',
+  components: {
+    HeaderBar
+  },
   methods: {
     // Log the user in
-    login() {
+    onClickLogin() {
       this.$auth.loginWithRedirect();
     },
     // Log the user out
-    logout() {
+    onClickLogout() {
       this.$auth.logout({
         returnTo: window.location.origin
       });

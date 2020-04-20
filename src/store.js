@@ -8,7 +8,6 @@ export default new Vuex.Store({
     barcode: '',
     multipleBarcodes: new Set([]),
     blacklist: [],
-    loggedIn: false,
   },
   mutations: {
     updateBarcode (state, barcode) {

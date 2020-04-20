@@ -2,10 +2,10 @@ import Api from '@/Api'
 
 export default {
   getFeedback(params) {
-    return Api().get(process.env.VUE_APP_FEEDBACK_API_URL + params.barcode)
+    return Api().get('http://0.0.0.0:8000/mock/feedback/result/11111111')
   },
   getFeedbackResult(params) {
-    return Api().get(process.env.VUE_APP_RESULT_API_URL + params.barcode)
+    return Api().get('http://0.0.0.0:8000/mock/feedback/result/11111111')
   },
   getCategories() {
     return Api().get(process.env.VUE_APP_CATEGORIES_API_URL)

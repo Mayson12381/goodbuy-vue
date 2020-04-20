@@ -1,18 +1,6 @@
 <template>
   <div id="app">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
-    <div id="nav">
-      <router-link to="/">Home</router-link>|
-      <router-link to="/about">About</router-link>|
-      <div class="" v-if="!$auth.isAuthenticated">
-        <router-link to="/login">Login</router-link>|
-      </div>
-      <div class="" v-if="$auth.isAuthenticated">
-        <router-link to="/login">Logout</router-link>|
-      </div>
-      <!-- NEW - add a route to the profile page -->
-      <router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
-    </div>
     <transition name="page-fade" mode="out-in">
       <router-view v-if="!isDesktop && !isHorizontal && !isTooOld"/>
     </transition>

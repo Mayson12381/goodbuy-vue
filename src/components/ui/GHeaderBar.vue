@@ -1,11 +1,17 @@
 <template lang="html">
   <div class="header-bar">
-    <div class="logo">
+    <div class="logo" @click="onClickHome">
       <GLogoWhite />
     </div>
     <div class="title" :class="{ 'title__desktop': desktop }" ref="name">goodbuy</div>
-    <div class="signup" v-if="loggedIn == false">SignIn</div>
-    <ProfileLogo v-else-if="loggedIn == true"/>
+    <router-link class="signup" v-if="!$auth.isAuthenticated" to="/login">
+      Sign In
+      <br>
+      Log In
+    </router-link>
+    <ProfileLogo v-if="$auth.isAuthenticated && this.$router.currentRoute.name != 'profile'" @click="onClickProfile" class="profile_button" />
+    <button v-if="$auth.isAuthenticated && this.$router.currentRoute.name == 'profile'" @click="onClickLogout" class="logout_button">Log Out</button>
+
   </div>
 </template>
 
@@ -19,35 +25,44 @@ export default {
     GLogoWhite,
     ProfileLogo,
   },
-  data() {
-    return {
-      loggedIn: ''
-    }
-  },
   props: {
     desktop: {
       type: Boolean,
       default: false,
     }
   },
-  created() {
-    this.loggedIn = this.$store.state.loggedIn
-    console.log(this.loggedIn)
+  methods: {
+    onClickProfile() {
+      this.$router.push("profile")
+    },
+    onClickLogout() {
+      this.$auth.logout({
+        returnTo: window.location.origin
+      });
+    },
+    onClickHome() {
+      this.$router.push("feature")
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+
+#app > div > div.header-bar > button {
+  color: white;
+}
+
 .header-bar {
   padding: .3rem;
   overflow: hidden;
   background-color: #272727;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-evenly;
 
   .logo {
-    position: absolute;
+    // position: absolute;
 
     svg {
       width: 40px;
@@ -59,8 +74,6 @@ export default {
   }
 
   .title {
-    margin: auto;
-    text-align: center;
     font-family: 'Avenir';
     color: white;
     font-size: 12vw;
@@ -68,6 +81,14 @@ export default {
     &__desktop {
       font-size: 3vw;
     }
+  }
+
+  .profile_button {
+    color: white;
+  }
+
+  .logout_button {
+    color: red;
   }
 }
 </style>

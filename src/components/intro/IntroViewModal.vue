@@ -23,7 +23,7 @@
 
     <div class="guest" @click="$emit('closeModal')">Continue as Guest</div>
     <div class="register" @click="onClickRegister()">Register</div>
-    <div class="login">Already have an account? 
+    <div class="login">Already have an account?
       <div class="login-btn" @click="onClickLogin()">Login here</div>
     </div>
   </div>
@@ -33,6 +33,7 @@
 import GListElement from '@/components/ui/GListElement'
 import IntroViewModalTitle from './IntoViewModalTitle.vue'
 
+
 export default {
   name: 'IntroViewInfoModal',
   components: {
@@ -41,13 +42,24 @@ export default {
   },
   methods: {
     onClickLogin() {
-      this.$router.push('login')
+      this.$auth.loginWithRedirect({
+        redirect_uri: 'http://localhost:8080/feature'
+      })
     },
     onClickRegister() {
-      // has to be changed to registration route
-      this.$router.push('login')
+      this.$auth.loginWithRedirect({
+        redirect_uri: 'http://localhost:8080/'
+      })
     }
   },
+  created() {
+    this.$emit('isRegistered', !this.$auth.isAuthenticated);
+  },
+  updated() {
+    if (this.$auth.isAuthenticated) {
+      this.$router.push('feature');
+    }
+  }
 }
 </script>
 
