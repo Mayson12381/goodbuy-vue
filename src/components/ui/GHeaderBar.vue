@@ -33,11 +33,6 @@ export default {
   },
   methods: {
     onClickProfile() {
-      this.$auth.getTokenSilently().then(resp => (
-     localStorage.setItem('jwt', resp)
-          )).catch(error => {
-      console.log(error.response)
-      })
       this.$router.push("profile")
     },
     onClickLogout() {
@@ -45,7 +40,7 @@ export default {
         returnTo: window.location.origin
       });
     },
-    onClickHome() {
+    onClickHome() { 
       this.$router.push("feature")
     }
   }

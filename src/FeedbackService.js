@@ -13,22 +13,22 @@ export default {
   getFridgeKarmaResult() {
     return Api().get(process.env.VUE_APP_FRIDGE_KARMA_FEEDBACK_API_URL)
   },
-  getBlacklist() {
-    return Api().get(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + this.$auth.user.sub,
+  getBlacklist(params) {
+    return Api().get(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL,
     {
       headers:{
-        Authorization: `Bearer ${localStorage.getItem('jwt')}`
+        Authorization: `Bearer ${params.jwt}`
       }
     })
   },
-  putBlacklist(blacklist, user_id, token) {
-    return Api().put(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + user_id + '/', {
-      'blacklist': blacklist.join(),
-      'user_id': user_id
+  putBlacklist(params) {
+    return Api().put(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + params.user_id + '/', {
+      'blacklist': params.blacklist.join(),
+      'user_id': params.user_id
     },
     {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${params.jwt}`,
       }
     })
   },

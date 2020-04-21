@@ -7,7 +7,7 @@
 					<BackArrowIcon></BackArrowIcon>
 			</button>
 			<div class="body">
-					<div class="title">{{ $auth.getTokenSilently() }}</div>
+					<div class="title">Blacklist</div>
 					<br>
 					<div class="header">Selection</div>
 					<hr>
@@ -59,13 +59,24 @@ export default {
 					this.$router.push('feature')
 			},
 			onClickSaveBlacklist: function() {
-				FeedbackService.putBlacklist(this.$store.state.blacklist, localStorage.getItem('jwt'))
+				let jwt = ''
+				this.$auth.getTokenSilently()
+				.then(resp => (
+					jwt = resp,
+					this.sendBlacklist(jwt)
+				))
+				.catch(error => {
+					console.log(error.response)
+				})
+			},
+			sendBlacklist: function(jwt){
+				FeedbackService.putBlacklist({'blacklist': this.$store.state.blacklist, 'jwt': jwt, 'user_id': this.$auth.user.sub})
 				.then(resp => (
           console.log('successfull', resp)
 					))
 				.catch(error => {
 					console.log(error.response)
-			})
+				})
 			},
 			initialBlacklist: function(resp) {
 				this.checkedCorporation = resp.data.blacklist.split(',')
@@ -75,15 +86,6 @@ export default {
 				this.$store.commit('updateBlacklist', this.checkedCorporation)
 			}
 	},
-	created() {
-			FeedbackService.getBlacklist(this.$auth.user.sub)
-			.then(resp => (
-				this.initialBlacklist(resp)
-			))
-			.catch(error => {
-				console.log(error.response)
-			})
-	}
 }
 </script>
 

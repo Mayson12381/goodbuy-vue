@@ -10,16 +10,39 @@
     <div>
       <pre>{{ JSON.stringify($auth.user, null, 2) }}</pre>
     </div>
-    <button class="btn btn-primary mt-5" type="button" name="blacklist" @click="callApi">Get Blacklist</button>
+    <div class="blacklist-btn" @click="onClickOpenBlacklist">Open Blacklist</div>
   </div>
 </template>
 
 <script type="text/javascript">
-  import HeaderBar from '@/components/ui/GHeaderBar.vue'
+import HeaderBar from '@/components/ui/GHeaderBar.vue'
+import FeedbackService from '@/FeedbackService.js'
 
-  export default {
-    components: {
-      HeaderBar
+export default {
+  components: {
+    HeaderBar
+  },
+  methods: {
+    onClickOpenBlacklist() {
+      let jwt = ''
+      this.$auth.getTokenSilently()
+      .then(resp => (
+        jwt = resp,
+        this.requestBlacklist(jwt)
+      ))
+      .catch(error => {
+        console.log(error.response)
+      })
+    },
+    requestBlacklist(jwt) {
+      FeedbackService.getBlacklist({ 'user_id': this.$auth.user.sub,'jwt': jwt })
+        .then(resp => (
+          this.initialBlacklist(resp)
+        ))
+        .catch(error => {
+          console.log(error.response)
+        })
     }
-  }
+  },
+}
 </script>
