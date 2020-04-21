@@ -10,6 +10,7 @@
     <div>
       <pre>{{ JSON.stringify($auth.user, null, 2) }}</pre>
     </div>
+    <button class="btn btn-primary mt-5" type="button" name="blacklist" @click="callApi">Get Blacklist</button>
   </div>
 </template>
 

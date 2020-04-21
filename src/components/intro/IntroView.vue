@@ -38,7 +38,6 @@ export default {
   },
   methods: {
     setFalse(event) {
-      console.log(event);
       this.isInfoModalActive =  event
     }
   },

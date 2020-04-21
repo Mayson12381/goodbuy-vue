@@ -14,21 +14,21 @@ export default {
     return Api().get(process.env.VUE_APP_FRIDGE_KARMA_FEEDBACK_API_URL)
   },
   getBlacklist() {
-    return Api().get(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + localStorage.getItem('user_id'),
+    return Api().get(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + this.$auth.user.sub,
     {
       headers:{
-        Authorization: 'Bearer ' + localStorage.getItem('auth_token'),
+        Authorization: `Bearer ${localStorage.getItem('jwt')}`
       }
     })
   },
-  putBlacklist(blacklist) {
-    return Api().put(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + localStorage.getItem('user_id') + '/', {
+  putBlacklist(blacklist, user_id, token) {
+    return Api().put(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + user_id + '/', {
       'blacklist': blacklist.join(),
-      'user_id': localStorage.getItem('user_id')
-    }, 
+      'user_id': user_id
+    },
     {
       headers: {
-        Authorization: 'Bearer '+ localStorage.getItem('auth_token'),
+        Authorization: `Bearer ${token}`,
       }
     })
   },
