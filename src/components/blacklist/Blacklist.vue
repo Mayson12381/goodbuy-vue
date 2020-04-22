@@ -18,7 +18,7 @@
 							<hr>
 							<ul>
 									<div v-for="(corporation, index) in corporations" :key="index">
-												<input type="checkbox" :value="corporation" :id="corporation" @click="updateBlacklist(corporation)">  {{ corporation }}
+												<input type="checkbox" v-model="corporation.is_checked" :value="corporation.name" :id="corporation.name">  {{ corporation.name }}
 									</div>
 							</ul>
 							<button @click="onClickSaveBlacklist">Save</button>
@@ -40,37 +40,45 @@ export default {
 	data: function () {
 			return {
 					checkedCorporation: [],
-					corporations: ['Nestlé', 'Unilever', 'Mars', 'Coca-Cola', 'Danone', 'PepsiCo', 'Kelloggs', 'Placeholder', 'Placeholder', 'Placeholder',],
+					corporations: [
+						{name: 'Nestlé', is_checked: false}, 
+						{name: 'Coca-Cola', is_checked: false},
+						{name: 'Mars', is_checked: false},
+						{name: 'Unilever', is_checked: false},
+						{name: 'PepsiCo', is_checked: false},
+						{name: 'Mondelez', is_checked: false},
+						{name: 'Kellog\'s', is_checked: false},
+						{name: 'General Mills, Inc.', is_checked: false},
+						{name: 'Danone', is_checked: false},
+						{name: 'Associated British Foods plc', is_checked: false},
+						],
 					newBrand: ''
 			}
 	},
 	methods: {
-			updateBlacklist: function(corporation) {
-					if(this.checkedCorporation.includes(corporation)){
-							var index = this.checkedCorporation.indexOf(corporation)
-							this.checkedCorporation.splice(index, 1)
-					}
-					else{
-							this.checkedCorporation.push(corporation)
-					}
-					this.$store.commit('updateBlacklist', this.checkedCorporation)
-			},
 			goBack: function() {
 					this.$router.push('feature')
 			},
 			onClickSaveBlacklist: function() {
 				let jwt = ''
 				this.$auth.getTokenSilently()
-				.then(resp => (
-					jwt = resp,
-					this.sendBlacklist(jwt)
-				))
+				.then(resp => {
+					jwt = resp
+					let updatedBlacklist = []
+					this.corporations.forEach(corp => {
+						if (corp.is_checked) {
+							updatedBlacklist.push(corp.name)
+						}
+					})
+					this.$store.commit('updateBlacklist', updatedBlacklist)
+					this.sendBlacklist(jwt, updatedBlacklist)
+				})
 				.catch(error => {
-					console.log(error.response)
+					console.log(error)
 				})
 			},
-			sendBlacklist: function(jwt){
-				FeedbackService.putBlacklist({'blacklist': this.$store.state.blacklist, 'jwt': jwt, 'user_id': this.$auth.user.sub})
+			sendBlacklist: function(jwt, updatedBlacklist) {
+				FeedbackService.putBlacklist({'blacklist': updatedBlacklist, 'jwt': jwt, 'user_id': this.$auth.user.sub})
 				.then(resp => (
           console.log('successfull', resp)
 					))
@@ -78,14 +86,24 @@ export default {
 					console.log(error.response)
 				})
 			},
-			initialBlacklist: function(resp) {
-				this.checkedCorporation = resp.data.blacklist.split(',')
-				for (var i = 0; i < this.checkedCorporation.length; i++){
-					document.getElementById(this.checkedCorporation[i]).checked = true
+			initialBlacklist: function() {
+				console.log(this.$store.state.blacklist)
+				this.checkedCorporation = this.$store.state.blacklist
+				if (this.checkedCorporation.length === 0){
+					return
 				}
-				this.$store.commit('updateBlacklist', this.checkedCorporation)
+				else{
+					this.corporations.forEach ( corp => {
+						if (this.checkedCorporation.includes(corp.name)) {
+							corp.is_checked = true
+						}
+					})
+				}
 			}
 	},
+	created() {
+		this.initialBlacklist()
+	}
 }
 </script>
 

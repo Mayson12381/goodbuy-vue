@@ -2,7 +2,7 @@
   <div class="welcome-screen">
     <div
       :class="{
-        'blur-page': isInfoModalActive
+        'blur-page': isInfoModalActive && !$auth.isAuthenticated
       }"
     >
     <HeaderBar data-cy="header-bar"/>

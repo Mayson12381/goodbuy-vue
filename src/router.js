@@ -10,7 +10,7 @@ import FeatureView from '@/components/feature/FeatureView.vue'
 import TableView from '@/components/table/TableView.vue'
 import Login from '@/components/login/Login.vue'
 import Blacklist from '@/components/blacklist/Blacklist.vue'
-import Tutorial from '@/components/blacklist/BlacklistTutorialIntroduction.vue'
+import BlacklistTutorial from '@/components/blacklist/BlacklistTutorialIntroduction.vue'
 import Profile from '@/components/profile/Profile.vue'
 import { authGuard } from "./auth/authGuard";
 
@@ -28,7 +28,7 @@ export const routes=[
     { path: '/fridge-karma', name:'fridge-karma', component: ScannerView},
     { path: '/login', name: 'login', component: Login },
     { path: '/blacklist', name:'blacklist', component: Blacklist},
-    { path: '/tutorial', name: 'tutorial', component: Tutorial},
+    { path: '/blacklist-tutorial', name: 'blacklist-tutorial', component: BlacklistTutorial},
     { path: '/profile', name: 'profile', component: Profile,  beforeEnter: authGuard},
 ]
 

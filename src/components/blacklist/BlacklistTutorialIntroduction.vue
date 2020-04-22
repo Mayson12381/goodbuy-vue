@@ -18,7 +18,9 @@
 
 <script>
 import HeaderBar from '@/components/ui/GHeaderBar.vue'
+import FeedbackService from '@/FeedbackService.js'
 export default {
+  name: 'blacklist-tutorial',
   components: {
     HeaderBar
   },
@@ -35,12 +37,30 @@ export default {
   },
   methods: {
     onClickNext: function() {
-      if(this.tutorial < 3){
+      if(this.tutorial < 3) {
         this.tutorial += 1
       }
       else{
+        let jwt = ''
+        this.$auth.getTokenSilently()
+        .then(resp => (
+          jwt = resp,
+          this.createEmptyBlacklist(jwt)
+        ))
+        .catch(error => {
+          console.log(error.response)
+        })
         this.$router.push('blacklist')
       }
+    },
+    createEmptyBlacklist: function(jwt) {
+      FeedbackService.postBlacklist({ 'user_id':this.$auth.user.sub, 'blacklist':'', 'jwt': jwt })
+      .then(resp => (
+        console.log(resp)
+      ))
+      .catch(error => {
+        console.log(error.response)
+      })
     }
   },
   destroyed: function(){
