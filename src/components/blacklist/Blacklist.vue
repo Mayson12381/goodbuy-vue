@@ -3,7 +3,7 @@
 			<div class="header">
 					<HeaderBar></HeaderBar>
 			</div>
-			<button @click="goBack">
+			<button @click="onClickgoBack">
 					<BackArrowIcon></BackArrowIcon>
 			</button>
 			<div class="body">
@@ -18,7 +18,7 @@
 							<hr>
 							<ul>
 									<div v-for="(corporation, index) in corporations" :key="index">
-												<input type="checkbox" v-model="corporation.is_checked" :value="corporation.name" :id="corporation.name">  {{ corporation.name }}
+												<input type="checkbox" v-model="corporation.is_checked">  {{ corporation.name }}
 									</div>
 							</ul>
 							<button @click="onClickSaveBlacklist">Save</button>
@@ -48,7 +48,7 @@ export default {
 						{name: 'PepsiCo', is_checked: false},
 						{name: 'Mondelez', is_checked: false},
 						{name: 'Kellog\'s', is_checked: false},
-						{name: 'General Mills, Inc.', is_checked: false},
+						{name: 'General Mills Inc.', is_checked: false},
 						{name: 'Danone', is_checked: false},
 						{name: 'Associated British Foods plc', is_checked: false},
 						],
@@ -56,7 +56,7 @@ export default {
 			}
 	},
 	methods: {
-			goBack: function() {
+			onClickgoBack: function() {
 					this.$router.push('feature')
 			},
 			onClickSaveBlacklist: function() {
@@ -87,7 +87,6 @@ export default {
 				})
 			},
 			initialBlacklist: function() {
-				console.log(this.$store.state.blacklist)
 				this.checkedCorporation = this.$store.state.blacklist
 				if (this.checkedCorporation.length === 0){
 					return

@@ -2,10 +2,10 @@ import Api from '@/Api'
 
 export default {
   getFeedback(params) {
-    return Api().get('http://0.0.0.0:8000/mock/feedback/result/11111111')
+    return Api().get(process.env.VUE_APP_FEEDBACK_API_URL + params.barcode)
   },
   getFeedbackResult(params) {
-    return Api().get('http://0.0.0.0:8000/mock/feedback/result/11111111')
+    return Api().get(process.env.VUE_APP_RESULT_API_URL + params.barcode)
   },
   getCategories() {
     return Api().get(process.env.VUE_APP_CATEGORIES_API_URL)
@@ -21,6 +21,17 @@ export default {
       }
     })
   },
+  putBlacklist(params) {
+    return Api().put(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + params.user_id + '/', {
+      'blacklist': params.blacklist.join(),
+      'user_id': params.user_id
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${params.jwt}`,
+      }
+    })
+  },
   postBlacklist(params) {
     return Api().post(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL, 
     {
@@ -32,17 +43,6 @@ export default {
         Authorization: `Bearer ${params.jwt}` 
       },
 
-    })
-  },
-  putBlacklist(params) {
-    return Api().put(process.env.VUE_APP_UPDATE_BLACKLIST_API_URL + params.user_id + '/', {
-      'blacklist': params.blacklist.join(),
-      'user_id': params.user_id
-    },
-    {
-      headers: {
-        Authorization: `Bearer ${params.jwt}`,
-      }
     })
   },
   postValidation(barcode, upvote, donwvote) {

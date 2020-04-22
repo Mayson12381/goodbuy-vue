@@ -37,15 +37,10 @@ export default {
     requestBlacklist(jwt) {
       FeedbackService.getBlacklist({ 'user_id': this.$auth.user.sub,'jwt': jwt })
         .then(resp => (
-          // Todo Watched tutorial and created a blacklist -> object mit blacklist
-          this.$store.state.blacklist = resp.data.blacklist.split(','),
+          this.$store.commit('updateBlacklist', resp.data.blacklist.split(',')),
           this.$router.push('blacklist')
-          // Todo Watched tutorial but didnt create a blacklist yet -> ''
-
         ))
         .catch(error => {
-          // Todo Didnt watch tutorial and never created blacklist -> 404
-          console.log(error)
           if (error.response.status === 404) {
             this.$router.push("blacklist-tutorial")
           } else {

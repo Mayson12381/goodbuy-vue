@@ -5,7 +5,7 @@
     <br>
     <div class="sub-title">Introduction</div>
     <br>
-    <input type="text" placeholder="e.g allergie list" v-if="tutorial===3">
+    <input type="text" placeholder="e.g suistainable list" v-if="tutorial===3">
     <hr>
     <br>
     <div class="info">
@@ -28,8 +28,8 @@ export default {
     return {
       tutorial: 0,
       content: [
-        'Hello USERNAME, this feature helps you sort out product that do not fit your habits. To get the product you like.',
-        'Simply select brands, allergies, or ingridients you do not like. We will then flag product that contain elements from your blacklist.',
+        `Hello ${this.$auth.user.nickname}, this feature helps you sort out product that do not fit your habits. To get the product you like.`,
+        'Simply select brands you do not like. We will then flag product that contain elements from your blacklist.',
         'Let\'s create your blacklist together in a short tutorial!',
         'Type in a name for your blacklist.'
       ]
