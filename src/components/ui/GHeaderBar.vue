@@ -9,7 +9,11 @@
       <br>
       Log In
     </div>
-    <ProfileLogo v-if="$auth.isAuthenticated && this.$router.currentRoute.name != 'profile'" @click="onClickProfile" class="profile_button" />
+    <ProfileLogo
+      v-if="$auth.isAuthenticated && this.$router.currentRoute.name != 'profile'" 
+      class="profile_button"
+      @click="onClickProfile"
+    />
     <button v-if="$auth.isAuthenticated && this.$router.currentRoute.name == 'profile'" @click="onClickLogout" class="logout_button">Log Out</button>
 
   </div>
