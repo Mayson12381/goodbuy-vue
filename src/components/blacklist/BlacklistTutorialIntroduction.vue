@@ -37,7 +37,7 @@ export default {
     }
   },
   methods: {
-    onClickNext: function() {
+    onClickNext() {
       if(this.tutorial < 3) {
         this.tutorial += 1
       }
