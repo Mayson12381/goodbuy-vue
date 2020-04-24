@@ -58,10 +58,9 @@ export default {
     return {
       response_data: '',
       score: 0,
-      big_true: 0,
-      big_false: 0,
-      big_we_dont_know: 0,
-      big_size: 0,
+      bad_karma: 0,
+      good_karma: 0,
+      we_dont_know: 0,
       isProductInfoActive: false,
       product: {
         brand: '',
@@ -83,17 +82,17 @@ export default {
     },
     calculateScore() {
       this.response_data.forEach(element => {
-        this.big_size += 1
         if (element.is_big_ten === true || element.is_blacklist === true) {
-          this.big_true += 1
+          this.bad_karma += 1
         } else if (element.is_big_ten === false || element.is_blacklist === false && element.is_big_ten !== 'We don\'t know') {
-          this.big_false += 1
+          this.good_karma += 1
         } else {
-          this.big_we_dont_know += 1
+          this.we_dont_know += 1
         }
       })
+      let amount_of_products = this.response_data.length
       // <!-- Good Item / Total Item * 100 = Score -->
-      this.score = Math.round((this.big_false / (this.big_size - this.big_we_dont_know)) * 100)
+      this.score = Math.round((this.good_karma / (amount_of_products - this.we_dont_know)) * 100)
     },
     getAPIResponse() {
       FeedbackService.getFridgeKarmaResult()

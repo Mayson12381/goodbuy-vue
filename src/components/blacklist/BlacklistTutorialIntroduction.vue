@@ -56,7 +56,7 @@ export default {
     createEmptyBlacklist: function(jwt) {
       FeedbackService.postBlacklist({ 'user_id':this.$auth.user.sub, 'blacklist':'', 'jwt': jwt })
       .then(resp => (
-        console.log(resp)
+        console.log(resp) ? process.env.NODE_ENV === 'develop' : ''
       ))
       .catch(error => {
         console.log(error.response)

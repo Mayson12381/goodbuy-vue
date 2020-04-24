@@ -4,11 +4,11 @@
       <GLogoWhite />
     </div>
     <div class="title" :class="{ 'title__desktop': desktop }" ref="name">goodbuy</div>
-    <router-link class="signup" v-if="!$auth.isAuthenticated" to="/login">
+    <div class="signup" v-if="!$auth.isAuthenticated" @click="onClickLogin">
       Sign In
       <br>
       Log In
-    </router-link>
+    </div>
     <ProfileLogo v-if="$auth.isAuthenticated && this.$router.currentRoute.name != 'profile'" @click="onClickProfile" class="profile_button" />
     <button v-if="$auth.isAuthenticated && this.$router.currentRoute.name == 'profile'" @click="onClickLogout" class="logout_button">Log Out</button>
 
@@ -17,7 +17,7 @@
 
 <script>
 import GLogoWhite from '@/assets/logo/GLogoWhite'
-import ProfileLogo from '@/assets/profile/User.vue'
+import ProfileLogo from '@/assets/profile/user.svg'
 
 export default {
   name: 'HeaderBar',
@@ -32,6 +32,11 @@ export default {
     }
   },
   methods: {
+    onClickLogin() {
+      this.$auth.loginWithRedirect({
+        redirect_uri:  `${process.env.VUE_APP_BASE_URL}feature`
+      })
+    },
     onClickProfile() {
       this.$router.push("profile")
     },

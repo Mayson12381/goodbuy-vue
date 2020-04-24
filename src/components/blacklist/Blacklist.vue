@@ -80,7 +80,7 @@ export default {
     sendBlacklist: function(jwt, updatedBlacklist) {
     FeedbackService.putBlacklist({'blacklist': updatedBlacklist, 'jwt': jwt, 'user_id': this.$auth.user.sub})
     .then(resp => (
-    console.log('successfull', resp)
+    console.log('successfull', resp) ? process.env.NODE_ENV === 'develop' : ''
       ))
     .catch(error => {
       console.log(error.response)

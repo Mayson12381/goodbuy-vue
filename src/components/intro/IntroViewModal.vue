@@ -43,12 +43,12 @@ export default {
   methods: {
     onClickLogin() {
       this.$auth.loginWithRedirect({
-        redirect_uri: 'http://localhost:8080/feature'
+        redirect_uri: `${process.env.VUE_APP_BASE_URL}feature`
       })
     },
     onClickRegister() {
       this.$auth.loginWithRedirect({
-        redirect_uri: 'http://localhost:8080/'
+        redirect_uri: `${process.env.VUE_APP_BASE_URL}`
       })
     }
   },
