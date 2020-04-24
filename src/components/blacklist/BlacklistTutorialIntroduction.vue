@@ -54,7 +54,7 @@ export default {
         this.$router.push('blacklist')
       }
     },
-    createEmptyBlacklist: function(jwt) {
+    createEmptyBlacklist(jwt) {
       FeedbackService.postBlacklist({ 'user_id':this.$auth.user.sub, 'blacklist':'', 'jwt': jwt })
       .then(resp => (
         console.log(resp) ? process.env.NODE_ENV === 'develop' : ''
