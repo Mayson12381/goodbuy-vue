@@ -86,18 +86,18 @@ export default {
       console.log(error.response)
     })
     },
-    initialBlacklist: function() {
-    this.checkedCorporation = this.$store.state.blacklist
-    if (this.checkedCorporation.length === 0){
-      return
-    }
-    else{
-      this.corporations.forEach ( corp => {
-      if (this.checkedCorporation.includes(corp.name)) {
-        corp.is_checked = true
+    initialBlacklist() {
+      this.checkedCorporation = this.$store.state.blacklist
+      if (this.checkedCorporation.length === 0) {
+        return
       }
-      })
-    }
+      else {
+        this.corporations.forEach ( corp => {
+          if (this.checkedCorporation.includes(corp.name)) {
+            corp.is_checked = true
+          }
+        })
+      }
     }
   },
   created() {
