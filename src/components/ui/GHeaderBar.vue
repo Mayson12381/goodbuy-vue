@@ -14,7 +14,13 @@
       class="profile_button"
       @click="onClickProfile"
     />
-    <button v-if="$auth.isAuthenticated && this.$router.currentRoute.name == 'profile'" @click="onClickLogout" class="logout_button">Log Out</button>
+    <button
+      v-if="$auth.isAuthenticated && this.$router.currentRoute.name == 'profile'"
+      class="logout_button"
+      @click="onClickLogout"
+    >
+      Log Out
+    </button>
 
   </div>
 </template>
