@@ -19,6 +19,7 @@
 <script>
 import HeaderBar from '@/components/ui/GHeaderBar.vue'
 import FeedbackService from '@/FeedbackService.js'
+
 export default {
   name: 'blacklist-tutorial',
   components: {
