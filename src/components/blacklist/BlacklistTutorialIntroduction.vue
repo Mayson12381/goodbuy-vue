@@ -5,7 +5,7 @@
     <br>
     <div class="sub-title">Introduction</div>
     <br>
-    <input type="text" placeholder="e.g suistainable list" v-if="tutorial===3">
+    <input type="text" placeholder="e.g sustainable list" v-if="tutorial===3">
     <hr>
     <br>
     <div class="info">
