@@ -33,7 +33,6 @@
 import GListElement from '@/components/ui/GListElement'
 import IntroViewModalTitle from './IntoViewModalTitle.vue'
 
-
 export default {
   name: 'IntroViewModal',
   components: {
