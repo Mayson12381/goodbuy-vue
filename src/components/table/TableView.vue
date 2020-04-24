@@ -3,10 +3,9 @@
   <HeaderBar></HeaderBar>
   <div class="table-view__body">
     <template v-for="(data, index) in response_data">
-      <button @click="isProductInfoActive = true,
-      product = data.fields,
-      product.is_big_ten = data.is_big_ten,
-      product.is_blacklist = data.is_blacklist" :key="index" class="row"
+      <button 
+        @click="onClickSetInfoActiveTrue(data)"
+        :key="index" class="row"
       >
         {{ data.fields.name }}
         <div class="is-big-ten">
@@ -76,6 +75,12 @@ export default {
     }
   },
   methods: {
+    onClickSetInfoActiveTrue(data){
+      this.isProductInfoActive = true
+      this.product = data.fields
+      this.product.is_big_ten = data.is_big_ten
+      this.product.is_blacklist = data.is_blacklist
+    },
     calculateScore() {
       this.response_data.forEach(element => {
         this.big_size += 1

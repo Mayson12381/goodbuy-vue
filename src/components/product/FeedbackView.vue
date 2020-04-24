@@ -44,7 +44,7 @@ import PositiveFeedbackIcon from '@/assets/product/PositiveFeebackIcon.vue'
 import FeedbackViewBackButton from './FeedbackViewBackButton.vue'
 import FeedbackViewInfoButton from './FeedbackViewInfoButton.vue'
 import RecommendedItemIcon from '@/assets/product/RecommendedItemIcon.vue'
-import BlacklistIcon from '@/assets/product/Blacklist.svg'
+import BlacklistIcon from '@/assets/product/Blacklist.vue'
 
 export default {
   name: 'FeedbackView',

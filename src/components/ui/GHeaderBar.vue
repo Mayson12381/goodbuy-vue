@@ -17,7 +17,7 @@
 
 <script>
 import GLogoWhite from '@/assets/logo/GLogoWhite'
-import ProfileLogo from '@/assets/profile/user.svg'
+import ProfileLogo from '@/assets/profile/User.vue'
 
 export default {
   name: 'HeaderBar',
@@ -62,8 +62,6 @@ export default {
   justify-content: space-evenly;
 
   .logo {
-    // position: absolute;
-
     svg {
       width: 40px;
       height: 40px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="intro-view-info-modal">
+  <div class="intro-view-modal">
     <div class="modal-header">Create an account!</div>
     <ModalTitle />
 
@@ -35,7 +35,7 @@ import IntroViewModalTitle from './IntoViewModalTitle.vue'
 
 
 export default {
-  name: 'IntroViewInfoModal',
+  name: 'IntroViewModal',
   components: {
     GListElement,
     'ModalTitle': IntroViewModalTitle,
@@ -65,7 +65,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.intro-view-info-modal {
+.intro-view-modal {
   padding: 1rem 0;
   margin: 40px 30px;
   border-radius: 10px;
